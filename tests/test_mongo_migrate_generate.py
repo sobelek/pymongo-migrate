@@ -76,3 +76,8 @@ def downgrade(db: "pymongo.database.Database"):
     pass
 '''
         )
+
+
+def test_generate_should_fail_when_name_collides(mongo_migrate):
+    with pytest.raises(FileExistsError):
+        mongo_migrate.generate("20181123000000_gt_500")
